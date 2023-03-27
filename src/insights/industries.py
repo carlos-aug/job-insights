@@ -1,17 +1,14 @@
 from typing import List, Dict
-from jobs import read
+from src.insights.jobs import read
 
 
 def get_unique_industries(path: str) -> List[str]:
     data = read(path)
-    industries = set()
-    for industry in data:
-        ind = industry['industry']
-        print(ind)
-        industries.add(ind)
-    print(ind)
-
-    return industries
+    all_industries = set()
+    for ind in data:
+        if ind['industry'] != '':
+            all_industries.add(ind['industry'])
+    return all_industries
 
 
 def filter_by_industry(jobs: List[Dict], industry: str) -> List[Dict]:
@@ -19,7 +16,7 @@ def filter_by_industry(jobs: List[Dict], industry: str) -> List[Dict]:
 
     Parameters
     ----------
-    jobs : list
+    jobs : listr
         List of jobs to be filtered
     industry : str
         Industry for the list filter
@@ -33,4 +30,4 @@ def filter_by_industry(jobs: List[Dict], industry: str) -> List[Dict]:
 
 
 if __name__ == "__main__":
-    industries = read("data/.csv")
+    print(get_unique_industries('data/jobs.csv'))

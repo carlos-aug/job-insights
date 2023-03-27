@@ -8,9 +8,9 @@ def read(path: str) -> List[Dict]:
     try:
         with open(path, 'r') as file:
             csv_jobs = list(csv.DictReader(file, delimiter=","))
+        return csv_jobs
     except FileNotFoundError as err:
-        print(err)
-    return csv_jobs
+        return err
 
 
 def get_unique_job_types(path: str) -> List[str]:
@@ -18,6 +18,7 @@ def get_unique_job_types(path: str) -> List[str]:
     all_types = set()
     for job_type in data:
         type = job_type["job_type"]
+        print(type)
         all_types.add(type)
     return all_types
 
@@ -41,5 +42,4 @@ def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
 
 
 if __name__ == "__main__":
-    csv_jobs = read("data/jobs.csv")
-    job_type = get_unique_job_types("data/jobs.csv")
+    print(read("data/jobs.csv"))
