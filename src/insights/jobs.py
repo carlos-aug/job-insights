@@ -18,27 +18,16 @@ def get_unique_job_types(path: str) -> List[str]:
     all_types = set()
     for job_type in data:
         type = job_type["job_type"]
-        print(type)
         all_types.add(type)
     return all_types
 
 
 def filter_by_job_type(jobs: List[Dict], job_type: str) -> List[Dict]:
-    """Filters a list of jobs by job_type
-
-    Parameters
-    ----------
-    jobs : list
-        List of jobs to be filtered
-    job_type : str
-        Job type for the list filter
-
-    Returns
-    -------
-    list
-        List of jobs with provided job_type
-    """
-    raise NotImplementedError
+    data = []
+    for job in jobs:
+        if job['job_type'] == job_type:
+            data.append(job)
+    return data
 
 
 if __name__ == "__main__":
